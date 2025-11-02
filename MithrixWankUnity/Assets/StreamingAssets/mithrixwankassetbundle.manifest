@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+CRC: 3360120392
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7cc3a954ed4cb68d093227f6984be168
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0e0332dbfaaebe85da3c10e908ed8361
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: c188d20b0f2683a48937ad299818a3d4, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: ChildLocator/NameTransformPair
+Assets:
+- Assets/Resources/Interactables/ShrineMithrix/mdlShrineMithrix.fbx
+- Assets/Resources/Interactables/ShrineMithrix/ShrineMithrix.prefab
+Dependencies: []

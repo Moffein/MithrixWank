@@ -10,7 +10,7 @@ Not sure if this will be a one-off, or if it will be something that expands over
 
 *After the fall of The Bulwark, the followers of the King of Nothing have grown bolder and more numerous.*
 
-- Guaranteed spawn on Stage 5, lets you tade Lunar items/equipments in exchange for items.
+- Guaranteed spawn on Stage 5, lets you trade Lunar items/equipments in exchange for items.
 	- Costs 20 director credits.
 
 [<img src="https://i.imgur.com/NQ9ahz7.jpeg">](https://i.imgur.com/NQ9ahz7.jpeg)

@@ -14,9 +14,9 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
         public GameObject rewardEffectPrefab;
         public Color rewardEffectColor;
 
-        public float chanceGreen = 20f;
+        public float chanceGreen = 25f;
         public float chanceRed = 5f;
-        public float chanceWhite = 75f;
+        public float chanceWhite = 70f;
 
         private Xoroshiro128Plus rng;
         private PurchaseInteraction purchaseInteraction;

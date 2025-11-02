@@ -78,7 +78,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
             isc.occupyPosition = true;
-            isc.directorCreditCost = 10;    //ShrineCleanse is 5
+            isc.directorCreditCost = 20;    //ShrineCleanse is 5, Small Chest is 15, most shrines are 20
             isc.slightlyRandomizeOrientation = false;
 
             iscShrineMithrix = isc;

@@ -19,16 +19,10 @@ namespace MithrixWank
         private void Awake()
         {
             Files.PluginInfo = Info;
-            ReadConfig();
             new PluginContentPack().Initialize();
             Modules.Assets.LoadAssetBundle();
             LanguageTokens.RegisterLanguageTokens();
             AddToAssembly();
-        }
-
-        private void ReadConfig()
-        {
-
         }
 
         private void AddToAssembly()

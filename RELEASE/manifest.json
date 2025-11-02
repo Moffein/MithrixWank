@@ -1,0 +1,12 @@
+{
+    "name": "MithrixWank",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/moffein/MithrixWank",
+    "description": "Enough with Providencewank, it's time for Mithrixwank! Adds a new shrine to stage 5.",
+    "dependencies": [
+        "bbepis-BepInExPack-5.4.2120",
+		"RiskofThunder-HookGenPatcher-1.2.5",
+		"RiskofThunder-R2API_Core-5.1.7",
+		"RiskofThunder-R2API_Prefab-1.1.1"
+    ]
+}

@@ -4,6 +4,6 @@
 		"MITHRIXWANK_SHRINE_MITHRIX_NAME" : "Shrine of Fealty",
 		"MITHRIXWANK_SHRINE_MITHRIX_CONTEXT" : "Offer to the King of Nothing",
 		"MITHRIXWANK_SHRINE_MITHRIX_DESCRIPTION" : "Allows survivors to sacrifice a random Lunar item or Lunar Equipment in exchange for a random item.",
-		"MITHRIXWANK_SHRINE_MITHRIX_LORE" : "After the fall of The Bulwark, the followers of the King of Nothing grew bolder.",
+		"MITHRIXWANK_SHRINE_MITHRIX_LORE" : "After the fall of The Bulwark, the followers of the King of Nothing have grown bolder and more numerous.",
 	}
 }

@@ -90,6 +90,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
             {
                 dropTable = Addressables.LoadAssetAsync<PickupDropTable>("RoR2/Base/Common/dtTier1Item.asset").WaitForCompletion();
             }
+            pickupIndex = dropTable.GenerateDrop(rng);
 
             PickupDropletController.CreatePickupDroplet(pickupIndex, dropletOrigin.position, dropletOrigin.forward * 5f);
             EffectManager.SpawnEffect(rewardEffectPrefab, new EffectData { origin = transform.position, rotation = Quaternion.identity, scale = 1f, color = rewardEffectColor }, true);

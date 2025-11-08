@@ -266,3 +266,6 @@ __pycache__/
 /RELEASE/plugins/EnforcerGang-Rocket/AssetBundles/rocketassetbundle
 /RELEASE/plugin.zip
 /RELEASE/README.md
+/RELEASE/CHANGELOG.md
+/RELEASE/manifest.json
+/RELEASE/plugins/MithrixWank/MithrixWank.dll

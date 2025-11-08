@@ -1,5 +1,6 @@
 ﻿using HG;
 using RoR2;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
@@ -9,6 +10,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
     [RequireComponent(typeof(PurchaseInteraction))]
     public class ShrineMithrixBehavior : MonoBehaviour
     {
+        public CharacterSpawnCard lunarScavSpawncard = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/ScavLunar/cscScavLunar.asset").WaitForCompletion();
         public float refreshDuration = 2f;
         public Transform dropletOrigin;
         public GameObject rewardEffectPrefab;
@@ -27,11 +29,31 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
         //No access to Unity Events, so use this hacky workaround.
         private void PurchaseInteractionHack(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor activator)
         {
+            //This is solely a hacky workaround for detecting when players lost beads
+            bool isMithrixShrine = self == purchaseInteraction && purchaseInteraction != null;
+            Inventory activatorInventory = null;
+            int initialBeadCount = -1;
+            if (isMithrixShrine)
+            {
+                CharacterBody body = activator.GetComponent<CharacterBody>();
+                if (body && body.inventory)
+                {
+                    activatorInventory = body.inventory;
+                    initialBeadCount = activatorInventory.GetItemCount(RoR2Content.Items.LunarTrinket);
+                }
+            }
+
             orig(self, activator);
             
-            if (self == purchaseInteraction && purchaseInteraction != null)
+            if (isMithrixShrine)
             {
                 OnPurchaseServer();
+
+                //Cursed code
+                if (initialBeadCount > 0 && activatorInventory && initialBeadCount > activatorInventory.GetItemCount(RoR2Content.Items.LunarTrinket))
+                {
+                    SpawnTwistedScavServer();
+                }
             }
         }
 
@@ -94,6 +116,51 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
 
             PickupDropletController.CreatePickupDroplet(pickupIndex, dropletOrigin.position, dropletOrigin.forward * 5f);
             EffectManager.SpawnEffect(rewardEffectPrefab, new EffectData { origin = transform.position, rotation = Quaternion.identity, scale = 1f, color = rewardEffectColor }, true);
+        }
+
+        public void SpawnTwistedScavServer()
+        {
+            if (!NetworkServer.active || !lunarScavSpawncard) return;
+
+            DirectorSpawnRequest request = new DirectorSpawnRequest(lunarScavSpawncard,
+                new DirectorPlacementRule()
+                {
+                    minDistance = 10,
+                    maxDistance = 60,
+                    placementMode = DirectorPlacementRule.PlacementMode.Random,
+                    position = transform.position,
+                    preventOverhead = false
+                }, rng)
+            {
+                ignoreTeamMemberLimit = true,
+                teamIndexOverride = TeamIndex.Lunar,
+                onSpawnedServer = SetSpecialScaling
+            };
+            if (DirectorCore.instance) DirectorCore.instance.TrySpawnObject(request);
+        }
+
+        private void SetSpecialScaling(SpawnCard.SpawnResult spawnResult)
+        {
+            if (!spawnResult.spawnedInstance) return;
+
+            Inventory spawnInv = spawnResult.spawnedInstance.GetComponent<Inventory>();
+            if (!spawnInv) return;
+
+            //Calculate Special Scaling
+            float healthFactor = 1f;
+            float damageFactor = 1f;
+            healthFactor += Run.instance.difficultyCoefficient / 2.5f;
+            damageFactor += Run.instance.difficultyCoefficient / 30f;
+            int playerFactor = Mathf.Max(1, Run.instance.livingPlayerCount);
+            healthFactor *= Mathf.Pow((float)playerFactor, 0.5f);
+
+            int healthBoostCount = Mathf.FloorToInt((healthFactor - 1f) * 10);
+            if (healthBoostCount > 0) spawnInv.GiveItem(RoR2Content.Items.BoostHp, healthBoostCount);
+
+            int damageBoostCount = Mathf.FloorToInt((damageFactor - 1f) * 10);
+            if (damageBoostCount > 0) spawnInv.GiveItem(RoR2Content.Items.BoostDamage, damageBoostCount);
+
+            if (spawnInv.GetItemCount(RoR2Content.Items.UseAmbientLevel) <= 0) spawnInv.GiveItem(RoR2Content.Items.UseAmbientLevel);
         }
     }
 }

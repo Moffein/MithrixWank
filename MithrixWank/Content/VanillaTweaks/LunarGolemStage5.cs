@@ -46,14 +46,14 @@ namespace MithrixWank.Content.VanillaTweaks
 
         private void CreateStage5LunarGolem()
         {
-            LunarGolemStage5BodyObject = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/LunarGolem/LunarGolemBody.prefab").WaitForCompletion().InstantiateClone("MithrixWank_LunarGolemStage5", true);
+            LunarGolemStage5BodyObject = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/LunarGolem/LunarGolemBody.prefab").WaitForCompletion().InstantiateClone("MithrixWank_LunarGolemStage5Body", true);
             DeathRewards dr = LunarGolemStage5BodyObject.GetComponent<DeathRewards>();
             dr.logUnlockableDef = null;
             Modules.PluginContentPack.bodyPrefabs.Add(LunarGolemStage5BodyObject);
             ModifyStats(LunarGolemStage5BodyObject);
             LunarGolemStage5BodyObject.AddComponent<SwapToLunarTeamComponent>();
 
-            LunarGolemStage5MasterObject = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/LunarGolem/LunarGolemMaster.prefab").WaitForCompletion().InstantiateClone("MithrixWank_LunarGolemStage5", true);
+            LunarGolemStage5MasterObject = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/LunarGolem/LunarGolemMaster.prefab").WaitForCompletion().InstantiateClone("MithrixWank_LunarGolemStage5Master", true);
             LunarGolemStage5MasterObject.GetComponent<CharacterMaster>().bodyPrefab = LunarGolemStage5BodyObject;
             Modules.PluginContentPack.masterPrefabs.Add(LunarGolemStage5MasterObject);
 

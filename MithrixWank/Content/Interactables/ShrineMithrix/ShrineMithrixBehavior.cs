@@ -127,7 +127,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
                 {
                     minDistance = 10,
                     maxDistance = 60,
-                    placementMode = DirectorPlacementRule.PlacementMode.Random,
+                    placementMode = DirectorPlacementRule.PlacementMode.Approximate,
                     position = transform.position,
                     preventOverhead = false
                 }, rng)

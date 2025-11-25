@@ -159,10 +159,16 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
             inspectDef.Info.FlavorToken = "MITHRIXWANK_SHRINE_MITHRIX_FLAVOR";
             inspectInfo.InspectInfo = inspectDef;
 
-            //EntityLocator, skip debris
-            statueBase.gameObject.AddComponent<EntityLocator>().entity = prefab;
-            statueMoon.gameObject.AddComponent<EntityLocator>().entity = prefab;
-            statuePlatform.gameObject.AddComponent<EntityLocator>().entity = prefab;
+            //EntityLocator
+            Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
+            foreach (Collider c in colliders)
+            {
+                if (c.gameObject == prefab || c.gameObject == statuePlatform) continue;
+                EntityLocator el = c.GetComponent<EntityLocator>();
+                if (el) continue;
+
+                c.gameObject.AddComponent<EntityLocator>().entity = prefab;
+            }
 
             ShrineMithrixInteractable = prefab;
             CreateSpawncard();

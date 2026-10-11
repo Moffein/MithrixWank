@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using BepInEx.Configuration;
+using JetBrains.Annotations;
 using R2API;
 using RoR2;
 using RoR2.Hologram;
@@ -36,6 +37,12 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
             base.Setup();
             CreateShrinePrefab();
             AddToSpawnpool();
+        }
+
+        protected override void ReadConfig(ConfigFile config)
+        {
+            base.ReadConfig(config);
+            config.Bind<bool>(ConfigCategoryString, "Add Karma on Use", true, "Shrine of Mithrix adds Karma when used. (Once per run)");
         }
 
         //Force spawn the shrine, ignoring the director

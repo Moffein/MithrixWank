@@ -13,7 +13,7 @@ using System.Security;
 namespace MithrixWank
 {
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [BepInPlugin("com.RiskySleeps.MithrixWank", "MithrixWank", "1.0.5")]
+    [BepInPlugin("com.RiskySleeps.MithrixWank", "MithrixWank", "1.1.0")]
     public class MithrixWankPlugin : BaseUnityPlugin
     {
         private void Awake()

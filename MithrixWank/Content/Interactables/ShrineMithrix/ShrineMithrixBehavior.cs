@@ -26,6 +26,9 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
         private bool waitingForRefresh = false;
         private float refreshTimer = 0f;
 
+        public static bool shouldAddKarma;
+        public const string KarmaEventFlag = "MithrixWank_UsedShrineMithrix";
+
         //No access to Unity Events, so use this hacky workaround.
         private void PurchaseInteractionHack(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor activator)
         {
@@ -39,7 +42,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
                 if (body && body.inventory)
                 {
                     activatorInventory = body.inventory;
-                    initialBeadCount = activatorInventory.GetItemCount(RoR2Content.Items.LunarTrinket);
+                    initialBeadCount = activatorInventory.GetItemCountEffective(RoR2Content.Items.LunarTrinket);
                 }
             }
 
@@ -50,9 +53,15 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
                 OnPurchaseServer();
 
                 //Cursed code
-                if (initialBeadCount > 0 && activatorInventory && initialBeadCount > activatorInventory.GetItemCount(RoR2Content.Items.LunarTrinket))
+                if (initialBeadCount > 0 && activatorInventory && initialBeadCount > activatorInventory.GetItemCountEffective(RoR2Content.Items.LunarTrinket))
                 {
                     SpawnTwistedScavServer();
+                }
+
+                if (shouldAddKarma && KarmaManager.instance && Run.instance && !Run.instance.GetEventFlag(KarmaEventFlag))
+                {
+                    Run.instance.SetEventFlag(KarmaEventFlag);
+                    KarmaManager.instance.ModifyKarma(1);
                 }
             }
         }

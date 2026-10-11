@@ -26,11 +26,11 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
         public static InteractableSpawnCard iscShrineMithrix;
         public static GameObject ShrineMithrixInteractable;
 
-        public override string ConfigCategoryString => "Shrine of Mithrix";
+        public override string ConfigCategoryString => "Shrine of Fealty";
 
         public override string ConfigOptionName => "Enable Content";
 
-        public override string ConfigDescriptionString => "Enables the Shrine of Mithrix";
+        public override string ConfigDescriptionString => "Enables the Shrine of Fealty";
 
         protected override void Setup()
         {
@@ -42,7 +42,7 @@ namespace MithrixWank.Content.Interactables.ShrineMithrix
         protected override void ReadConfig(ConfigFile config)
         {
             base.ReadConfig(config);
-            config.Bind<bool>(ConfigCategoryString, "Add Karma on Use", true, "Shrine of Mithrix adds Karma when used. (Once per run)");
+            config.Bind<bool>(ConfigCategoryString, "Add Karma on Use", true, "Shrine of Fealty adds Karma when used. (Once per run)");
         }
 
         //Force spawn the shrine, ignoring the director
